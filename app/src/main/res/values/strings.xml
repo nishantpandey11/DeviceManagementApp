@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">DeviceInventoryManagementApp</string>
+    <string name="device_list">Device List</string>
+    <string name="employee_list">Employee List</string>
+    <string name="device_allotted_list">Device Allocation List</string>
+    <string name="no_device_added">No device found.</string>
+    <string name="no_emp_added">No employee found.</string>
+    <string name="no_allocation_added">No device allocation found.</string>
+    <string name="device_name">Device Name</string>
+    <string name="total_inventory">Total Inventory</string>
+    <string name="add_device">Add Device</string>
+    <string name="add_emp">Add Employee</string>
+    <string name="emp_id">Employee Id</string>
+    <string name="emp_name">Employee Name</string>
+    <string name="emp_email">Employee Email</string>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/device_list_fragment">
+
+    <fragment
+        android:id="@+id/device_list_fragment"
+        android:name="com.assignment.deviceinventorymanagementapp.view.devicelist.DeviceListFragment"
+        android:label="@string/device_list" >
+        <action
+            android:id="@+id/action_device_list_fragment_to_deviceFragment"
+            app:destination="@id/deviceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/employee_list_fragment"
+        android:name="com.assignment.deviceinventorymanagementapp.view.employeelist.EmployeeListFragment"
+        android:label="@string/employee_list" >
+        <action
+            android:id="@+id/action_employee_list_fragment_to_employeeFragment"
+            app:destination="@id/employeeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/device_allotted_list_fragment"
+        android:name="com.assignment.deviceinventorymanagementapp.view.deviceallocation.DeviceAllottedListFragment"
+        android:label="@string/device_allotted_list" />
+    <fragment
+        android:id="@+id/deviceFragment"
+        android:name="com.assignment.deviceinventorymanagementapp.view.devicelist.DeviceFragment"
+        android:label="@string/add_device"
+        tools:layout="@layout/device_fragment" />
+    <fragment
+        android:id="@+id/employeeFragment"
+        android:name="com.assignment.deviceinventorymanagementapp.view.employeelist.EmployeeFragment"
+        android:label="Add Employee"
+        tools:layout="@layout/emp_fragment" />
+</navigation>
