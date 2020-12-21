@@ -18,4 +18,5 @@ class DeviceListFragment:Fragment(R.layout.device_list_fragment ) {
         }
 
     }
+
 }

@@ -33,5 +33,10 @@ ext{
     contraintLayoutVersion = '2.0.4'
     cardViewVersion = '1.0.0'
     recyclerViewVersion = '1.0.0'
+    roomVersion = '2.2.5'
+    daggerVersion = "2.17"
+    archLifecycleVersion = '2.2.0'
+
+
 
 }

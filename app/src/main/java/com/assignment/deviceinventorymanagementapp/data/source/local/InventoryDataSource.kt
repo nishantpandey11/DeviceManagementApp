@@ -1,4 +1,4 @@
-package com.assignment.deviceinventorymanagementapp.data
+package com.assignment.deviceinventorymanagementapp.data.source.local
 
 import androidx.lifecycle.LiveData
 import com.assignment.deviceinventorymanagementapp.data.model.DeviceEntity
@@ -6,8 +6,8 @@ import com.assignment.deviceinventorymanagementapp.data.model.DeviceInventory
 import com.assignment.deviceinventorymanagementapp.data.model.EmployeeEntity
 import com.assignment.deviceinventorymanagementapp.data.model.Result
 
-interface Repository {
 
+interface InventoryDataSource {
     /**
      * To add Device information into Database*/
     suspend fun addDevice(deviceEntity: DeviceEntity)
@@ -17,7 +17,6 @@ interface Repository {
      *
      */
     suspend fun getDeviceById(deviceId: Int): DeviceEntity?
-
     suspend fun getDeviceRById(deviceId: Int): Result<DeviceEntity>
 
     /**
@@ -25,8 +24,16 @@ interface Repository {
     fun getDeviceList(): LiveData<List<DeviceEntity>>
 
     /**
-     * To update Device information into Database*/
-    suspend fun updateDevice(deviceEntity: DeviceEntity)
+     * To Fetch All Available Devices from Database*/
+    fun observeAvailableDevices(): LiveData<List<DeviceEntity>>
+
+    /**
+     *  Get Result DeviceEntity List*/
+    suspend fun getDevices(): Result<List<DeviceEntity>>
+
+    /**
+     * To update Device Current Available information into Database*/
+    suspend fun updateAvailableInventory(currentInventory: Int, deviceId: Int): Int
 
     /**
      * Update a device.
@@ -38,26 +45,8 @@ interface Repository {
     suspend fun updateTotalInventory(totalInventory: Int, deviceId: Int): Int
 
     /**
-     * To remove device record from Database*/
-    suspend fun deleteDevice(deviceId: Int): Int
-
-    /**
-     * To Fetch All Available Devices from Database*/
-    fun observeAvailableDevices(): LiveData<List<DeviceEntity>>
-
-    /**
-     * To update Device Current Available information into Database*/
-    suspend fun updateAvailableInventory(currentInventory: Int, deviceId: Int): Int
-
-    /**
-     *  Get Result DeviceEntity List*/
-    suspend fun getDevices(): Result<List<DeviceEntity>>
-
-    /**
-     *
-     * ****************************Employee Repository************************
-     *
-     * */
+     * To Fetch All Employees from Database*/
+    fun getEmployeeList(): LiveData<List<EmployeeEntity>>
 
     /**
      * To add Employee information into Database*/
@@ -75,15 +64,18 @@ interface Repository {
      * To remove Employee record to Database*/
     suspend fun deleteEmployee(empId: Int): Int
 
-    /**
-     * To Fetch All Employees from Database*/
-    fun getEmployeeList(): LiveData<List<EmployeeEntity>>
 
     /**
-     *
-     ***********************DeviceInventory Repository***************
-     *
-     * */
+     * To update Device information into Database*/
+    suspend fun updateDevice(deviceEntity: DeviceEntity): Int
+
+    /**
+     * To remove device record from Database*/
+    suspend fun deleteDevice(deviceId: Int): Int
+
+    /**
+     * To Fetch All DeviceInventory from Database*/
+    fun getDeviceInventoryList(): LiveData<Result<List<DeviceInventory>>>
 
     /**
      * To add DeviceInventory information into Database*/
@@ -100,10 +92,6 @@ interface Repository {
     /**
      * To remove DeviceInventory record to Database*/
     suspend fun updateInventoryStatus(recordId: Int, status: Int): Int
-
-    /**
-     * To Fetch All DeviceInventory from Database*/
-    fun getDeviceInventoryList(): LiveData<Result<List<DeviceInventory>>>
 
     /**
      * Get a DeviceInventory by id.
