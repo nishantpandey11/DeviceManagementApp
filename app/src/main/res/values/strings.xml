@@ -13,4 +13,8 @@
     <string name="emp_id">Employee Id</string>
     <string name="emp_name">Employee Name</string>
     <string name="emp_email">Employee Email</string>
+    <string name="current_inventory">Current Inventory</string>
+    <string name="alert_message">Are you sure you want to delete this item?</string>
+
+
 </resources>

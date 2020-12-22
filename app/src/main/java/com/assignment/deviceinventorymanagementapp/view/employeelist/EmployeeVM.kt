@@ -1,26 +1,26 @@
-package com.assignment.deviceinventorymanagementapp.view.devicelist
+package com.assignment.deviceinventorymanagementapp.view.employeelist
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.assignment.deviceinventorymanagementapp.data.Repository
-import com.assignment.deviceinventorymanagementapp.data.model.DeviceEntity
+import com.assignment.deviceinventorymanagementapp.data.model.EmployeeEntity
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class DeviceVM @Inject constructor(val repository: Repository) : ViewModel() {
+class EmployeeVM @Inject constructor(val repository: Repository) : ViewModel() {
     var feedback: MutableLiveData<String> = MutableLiveData()
     var deviceAdded: MutableLiveData<Unit> = MutableLiveData()
-    fun addDevice(name: String, inventory: String) {
-        if (name.isEmpty() || inventory.isEmpty()) {
+    fun addEmployee(name: String, email: String) {
+        if (name.isEmpty() || email.isEmpty()) {
             feedback.value = "All fields are mandatory !"
             return
         }
-        val deviceEntity = DeviceEntity(name, inventory.toInt(), inventory.toInt())
+        val empEntity = EmployeeEntity(name, email)
         viewModelScope.launch {
-            repository.addDevice(deviceEntity)
+            repository.addEmployee(empEntity)
             deviceAdded.postValue(Unit)
-            feedback.postValue("Device successfully added.")
+            feedback.postValue("Employee successfully added.")
         }
     }
 

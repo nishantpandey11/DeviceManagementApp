@@ -2,11 +2,14 @@ package com.assignment.deviceinventorymanagementapp.view.devicelist
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.assignment.deviceinventorymanagementapp.R
+import com.assignment.deviceinventorymanagementapp.utils.Utility
 import com.assignment.deviceinventorymanagementapp.view.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.device_fragment.*
@@ -20,12 +23,6 @@ class DeviceFragment : Fragment(R.layout.device_fragment) {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        /*
-     *  Remember in our FragmentModule, we
-     * defined MovieListFragment injection? So we need
-     * to call this method in order to inject the
-     * ViewModelFactory into our Fragment
-     * */
         AndroidSupportInjection.inject(this)
     }
 
@@ -34,13 +31,19 @@ class DeviceFragment : Fragment(R.layout.device_fragment) {
         viewModel = ViewModelProvider(this, viewModelFactory)
             .get(DeviceVM::class.java)
 
+        viewModel.feedback.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
+        })
+        viewModel.deviceAdded.observe(viewLifecycleOwner, Observer {
+            findNavController().popBackStack()
+        })
+
         btn_add_device.setOnClickListener {
+            Utility.hideKeyboard(activity)
             viewModel.addDevice(
                 deviceName.editText?.text.toString(),
-                deviceCount.editText?.text.toString().toInt()
+                deviceCount.editText?.text.toString()
             )
         }
-
-
     }
 }
