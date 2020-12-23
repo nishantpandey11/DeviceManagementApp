@@ -1,5 +1,7 @@
 package com.assignment.deviceinventorymanagementapp.di.module
 
+import com.assignment.deviceinventorymanagementapp.view.deviceallocation.DeviceAllocationFragment
+import com.assignment.deviceinventorymanagementapp.view.deviceallocation.DeviceAllocationListFragment
 import com.assignment.deviceinventorymanagementapp.view.devicelist.DeviceFragment
 import com.assignment.deviceinventorymanagementapp.view.devicelist.DeviceListFragment
 import com.assignment.deviceinventorymanagementapp.view.employeelist.EmployeeFragment
@@ -25,5 +27,11 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun provideDeviceListFragment(): DeviceListFragment
+
+    @ContributesAndroidInjector
+    abstract fun provideDeviceAllocationListFragment(): DeviceAllocationListFragment
+
+    @ContributesAndroidInjector
+    abstract fun provideDeviceAllocationFragment(): DeviceAllocationFragment
 
 }

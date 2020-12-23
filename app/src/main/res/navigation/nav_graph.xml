@@ -23,8 +23,12 @@
     </fragment>
     <fragment
         android:id="@+id/device_allotted_list_fragment"
-        android:name="com.assignment.deviceinventorymanagementapp.view.deviceallocation.DeviceAllottedListFragment"
-        android:label="@string/device_allotted_list" />
+        android:name="com.assignment.deviceinventorymanagementapp.view.deviceallocation.DeviceAllocationListFragment"
+        android:label="@string/device_allotted_list" >
+        <action
+            android:id="@+id/action_device_allotted_list_fragment_to_deviceAllocationFragment"
+            app:destination="@id/deviceAllocationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/deviceFragment"
         android:name="com.assignment.deviceinventorymanagementapp.view.devicelist.DeviceFragment"
@@ -35,4 +39,9 @@
         android:name="com.assignment.deviceinventorymanagementapp.view.employeelist.EmployeeFragment"
         android:label="Add Employee"
         tools:layout="@layout/emp_fragment" />
+    <fragment
+        android:id="@+id/deviceAllocationFragment"
+        android:name="com.assignment.deviceinventorymanagementapp.view.deviceallocation.DeviceAllocationFragment"
+        android:label="Allocate Device"
+        tools:layout="@layout/device_allocation_fragment" />
 </navigation>

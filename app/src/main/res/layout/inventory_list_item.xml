@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        style="@style/listItemCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/constraints_padding">
+
+            <TextView
+                android:id="@+id/tv_employee_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5dp"
+                android:text="@string/emp_name"
+                app:layout_constraintEnd_toStartOf="@id/cb_status_returned"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_device_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5dp"
+                android:text="@string/device_name"
+                app:layout_constraintStart_toStartOf="@id/tv_employee_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_employee_name" />
+
+            <TextView
+                android:id="@+id/tv_device_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5dp"
+                android:text="@string/device_status"
+                app:layout_constraintStart_toStartOf="@id/tv_device_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_device_name" />
+
+
+            <TextView
+                android:id="@+id/tv_device_returned_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5dp"
+                android:text="@string/device_date"
+                app:layout_constraintStart_toStartOf="@id/tv_device_status"
+                app:layout_constraintTop_toBottomOf="@id/tv_device_status" />
+
+            <ImageView
+                android:id="@+id/iv_delete_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/add_device"
+                android:padding="@dimen/_5dp"
+                android:src="@drawable/trash_icon"
+                android:visibility="gone"
+                app:layout_constraintBaseline_toBaselineOf="@id/tv_device_name"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <CheckBox
+                android:id="@+id/cb_status_returned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status_return"
+                app:layout_constraintBaseline_toBaselineOf="@id/tv_employee_name"
+                app:layout_constraintEnd_toStartOf="@id/iv_delete_row" />
+
+            <CheckBox
+                android:id="@+id/cb_status_lost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status_lost"
+                app:layout_constraintStart_toStartOf="@id/cb_status_returned"
+                app:layout_constraintTop_toBottomOf="@id/cb_status_returned" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

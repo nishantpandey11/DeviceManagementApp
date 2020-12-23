@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.assignment.deviceinventorymanagementapp.di.ViewModelKey
 import com.assignment.deviceinventorymanagementapp.view.ViewModelFactory
+import com.assignment.deviceinventorymanagementapp.view.deviceallocation.DeviceAllocationListVM
+import com.assignment.deviceinventorymanagementapp.view.deviceallocation.DeviceAllocationVM
 import com.assignment.deviceinventorymanagementapp.view.devicelist.DeviceListVM
 import com.assignment.deviceinventorymanagementapp.view.devicelist.DeviceVM
 import com.assignment.deviceinventorymanagementapp.view.employeelist.EmployeeListVM
@@ -36,4 +38,14 @@ abstract class ViewModelFactoryModule {
     @IntoMap
     @ViewModelKey(DeviceListVM::class)
     abstract fun bindDeviceListVM(viewModel: DeviceListVM): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DeviceAllocationListVM::class)
+    abstract fun bindDeviceAllocationListVM(viewModel: DeviceAllocationListVM): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DeviceAllocationVM::class)
+    abstract fun bindDeviceAllocationVM(viewModel: DeviceAllocationVM): ViewModel
 }

@@ -1,12 +1,17 @@
 package com.assignment.deviceinventorymanagementapp.utils
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.assignment.deviceinventorymanagementapp.R
+import com.assignment.deviceinventorymanagementapp.data.model.DeviceStatus
+import java.util.*
 
 object Utility {
     fun hideKeyboard(activity: FragmentActivity?) {
@@ -17,6 +22,31 @@ object Utility {
             view = View(activity)
         }
         imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    fun View.showDatePicker() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val dpd = DatePickerDialog(
+            this.context, DatePickerDialog.OnDateSetListener
+            { view, yearI, monthOfYear, dayOfMonth ->
+                when (this) {
+                    is Button -> this.text =
+                        StringBuffer("Return Date: $dayOfMonth/$monthOfYear/$yearI")
+                    is TextView -> this.text =
+                        StringBuffer("Return Date: $dayOfMonth/$monthOfYear/$yearI")
+                    else -> throw Exception("Text Property not supported ")
+
+                }
+            },
+            year, month, day
+        )
+
+        dpd.datePicker.minDate = System.currentTimeMillis() + 86400000//1hr
+        dpd.show()
     }
 
     fun <T> Fragment.showDialog(
@@ -40,7 +70,25 @@ object Utility {
         alertDialog.setCancelable(false)
         alertDialog.show()
     }
+
+    fun enumToIntDeviceStatus(deviceStatus: DeviceStatus) =
+        when (deviceStatus) {
+            DeviceStatus.AVAILABLE -> 1
+            DeviceStatus.ISSUED -> 2
+            DeviceStatus.RETURNED -> 3
+            DeviceStatus.LOST -> 4
+        }
+
+    fun intDeviceStatusToEnum(status: Int) =
+        when (status) {
+            1 -> DeviceStatus.AVAILABLE
+            2 -> DeviceStatus.ISSUED
+            3 -> DeviceStatus.RETURNED
+            4 -> DeviceStatus.LOST
+            else -> DeviceStatus.ISSUED
+        }
 }
+
 
 interface DialogCallBack<T> {
     fun onPositiveButtonClicked(data: T)
