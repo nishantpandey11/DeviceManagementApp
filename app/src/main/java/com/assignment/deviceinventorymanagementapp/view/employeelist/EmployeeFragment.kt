@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.assignment.deviceinventorymanagementapp.R
+import com.assignment.deviceinventorymanagementapp.utils.Utility
 import com.assignment.deviceinventorymanagementapp.view.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.emp_fragment.*
@@ -38,6 +39,7 @@ class EmployeeFragment : Fragment(R.layout.emp_fragment) {
         })
 
         btn_add_emp.setOnClickListener {
+            Utility.hideKeyboard(activity)
             viewModel.addEmployee(
                 empName.editText?.text.toString(),
                 empEmail.editText?.text.toString()
